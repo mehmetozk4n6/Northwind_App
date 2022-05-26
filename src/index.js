@@ -5,10 +5,10 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import "alertifyjs/build/css/alertify.min.css";
-import configureStore from "./redux/reducers/configureStore";
-import { BrowserRouter } from "react-router-dom";
 
-const store = configureStore();
+import { BrowserRouter } from "react-router-dom";
+import { store } from "./redux/store";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>

@@ -1,12 +1,11 @@
 import { Table, Button } from "reactstrap";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as cartActions from "../../redux/actions/cartActions";
 import alertify from "alertifyjs";
+import { useDispatch } from "react-redux";
 
 function CartDetail(props) {
+  const dispatch = useDispatch();
   const removeFromCart = (product) => {
-    props.actions.removeFromCart(product);
+    dispatch(removeFromCart(product));
     alertify.error(product.productName + " sepetten silindi");
   };
   return (
@@ -46,17 +45,4 @@ function CartDetail(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    cart: state.cartReducer,
-  };
-}
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      removeFromCart: bindActionCreators(cartActions.removeFromCart, dispatch),
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CartDetail);
+export default CartDetail;

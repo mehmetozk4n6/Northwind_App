@@ -13,11 +13,11 @@ function Navi() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Item>
+              <Nav.Item className="me-3">
                 <Link to="/">Home</Link>
               </Nav.Item>
-              <Nav.Item>
-                <Link to="saveproduct">SaveProduct</Link>
+              <Nav.Item className="me-3">
+                <Link to="saveproduct">Save Product</Link>
               </Nav.Item>
             </Nav>
           </Navbar.Collapse>

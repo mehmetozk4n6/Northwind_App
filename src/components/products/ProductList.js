@@ -1,25 +1,29 @@
 import { useEffect } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import * as productActions from "../../redux/actions/productAction";
-import * as cartActions from "../../redux/actions/cartActions";
 import { Badge, Table, Button } from "reactstrap";
 import alertify from "alertifyjs";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productsSelector, getProducts } from "../../redux/productSlice";
+import { currentCategorySelector } from "../../redux/categorySlice";
+import { addToCart } from "../../redux/cartSlice";
 
-function ProductList(props) {
+function ProductList() {
+  const dispatch = useDispatch();
+  const products = useSelector(productsSelector);
+  const currentCategory = useSelector(currentCategorySelector);
+
   useEffect(() => {
-    props.actions.getProducts();
+    dispatch(getProducts());
   }, []);
   const addToCart1 = (product) => {
-    props.actions.addToCart({ quantity: 1, product });
+    dispatch(addToCart({ quantity: 1, product }));
     alertify.notify(product.productName + " sepete eklendi");
   };
   return (
     <div>
       <h3>
         <Badge color="warning">Products</Badge>
-        <Badge color="success">{props.currentCategory.categoryName}</Badge>
+        <Badge color="success">{currentCategory.categoryName}</Badge>
       </h3>
       <Table hover responsive striped>
         <thead>
@@ -33,7 +37,7 @@ function ProductList(props) {
           </tr>
         </thead>
         <tbody>
-          {props.products.map((product) => (
+          {products.map((product) => (
             <tr key={product.id}>
               <th scope="row">{product.id}</th>
               <td>
@@ -57,20 +61,4 @@ function ProductList(props) {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    products: state.productListReducer,
-    currentCategory: state.changeCategoryReducer,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: {
-      getProducts: bindActionCreators(productActions.getProducts, dispatch),
-      addToCart: bindActionCreators(cartActions.addToCart, dispatch),
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default ProductList;

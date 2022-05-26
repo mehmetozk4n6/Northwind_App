@@ -1,29 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { categoriesSelector, getCategories } from "../../redux/categorySlice";
+import { productsSelector, saveProduct } from "../../redux/productSlice";
 import ProductDetail from "./ProductDetail";
-import { connect } from "react-redux";
-import { getCategories } from "../../redux/actions/categoryActions";
-import { saveProduct } from "../../redux/actions/productAction";
-import { getProducts } from "../../redux/actions/productAction";
 
-function AddOrUpdateProduct({
-  products,
-  categories,
-  getProducts,
-  getCategories,
-  saveProduct,
-}) {
-  let { productId } = useParams();
-  const product2 =
-    productId && products.length > 0 ? getProductById(products, productId) : {};
+function AddOrUpdateProduct() {
+  const dispatch = useDispatch();
   let navigate = useNavigate();
-
+  let { productId } = useParams();
+  const products = useSelector(productsSelector);
+  const categories = useSelector(categoriesSelector);
   const [product, setProduct] = useState(product2);
   const [errors, setErrors] = useState({});
 
+  const product2 =
+    productId && products.length > 0 ? getProductById(products, productId) : {};
+
   useEffect(() => {
     if (categories.length === 0) {
-      getCategories();
+      dispatch(getCategories());
     }
     setProduct(product2);
   }, [product2]);
@@ -51,7 +47,7 @@ function AddOrUpdateProduct({
   }
   function handleSave(event) {
     event.preventDefault();
-    saveProduct(product).then(() => {
+    dispatch(saveProduct(product)).then(() => {
       navigate("/");
     });
   }
@@ -74,17 +70,4 @@ export function getProductById(products, productId) {
   return product;
 }
 
-function mapStateToProps(state) {
-  return {
-    products: state.productListReducer,
-    categories: state.categoryListReducer,
-  };
-}
-
-const mapDispatchToProps = {
-  getCategories,
-  saveProduct,
-  getProducts,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddOrUpdateProduct);
+export default AddOrUpdateProduct;
