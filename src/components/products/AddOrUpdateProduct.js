@@ -11,18 +11,19 @@ function AddOrUpdateProduct() {
   let { productId } = useParams();
   const products = useSelector(productsSelector);
   const categories = useSelector(categoriesSelector);
-  const [product, setProduct] = useState(product2);
+  const [product, setProduct] = useState("");
   const [errors, setErrors] = useState({});
-
-  const product2 =
-    productId && products.length > 0 ? getProductById(products, productId) : {};
 
   useEffect(() => {
     if (categories.length === 0) {
       dispatch(getCategories());
     }
-    setProduct(product2);
-  }, [product2]);
+    setProduct(
+      productId && products.length > 0
+        ? getProductById(products, productId)
+        : ""
+    );
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -64,10 +65,8 @@ function AddOrUpdateProduct() {
 }
 
 export function getProductById(products, productId) {
-  let product = products.find(
-    (product1) => product1.id === parseInt(productId)
-  );
-  return product;
+  console.log(productId);
+  return products.find((product) => product.id === parseInt(productId));
 }
 
 export default AddOrUpdateProduct;

@@ -2,9 +2,11 @@ import { NavDropdown, Nav } from "react-bootstrap";
 import { Badge, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import alertify from "alertifyjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "../../redux/cartSlice";
 
-function CartSummary(props) {
+function CartSummary() {
+  const cart = useSelector(cartSelector);
   const dispatch = useDispatch();
   const removeFromCart = (product) => {
     dispatch(removeFromCart(product));
@@ -17,7 +19,7 @@ function CartSummary(props) {
   );
   const renderSummary = () => (
     <NavDropdown title="Sepet" drop="down" align="end">
-      {props.cart.map((cartItem) => (
+      {cart.map((cartItem) => (
         <NavDropdown.Item key={cartItem.product.id} href="#">
           <Button
             color="danger"
@@ -40,7 +42,7 @@ function CartSummary(props) {
       </Nav.Item>
     </NavDropdown>
   );
-  return <div>{props.cart?.length > 0 ? renderSummary() : renderEmpty()}</div>;
+  return <div>{cart?.length > 0 ? renderSummary() : renderEmpty()}</div>;
 }
 
 export default CartSummary;

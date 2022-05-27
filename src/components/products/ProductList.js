@@ -11,6 +11,10 @@ function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(productsSelector);
   const currentCategory = useSelector(currentCategorySelector);
+  const filteredProducts =
+    currentCategory === ""
+      ? products
+      : products.filter((product) => product.categoryId === currentCategory.id);
 
   useEffect(() => {
     dispatch(getProducts());
@@ -19,6 +23,7 @@ function ProductList() {
     dispatch(addToCart({ quantity: 1, product }));
     alertify.notify(product.productName + " sepete eklendi");
   };
+
   return (
     <div>
       <h3>
@@ -37,7 +42,7 @@ function ProductList() {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => (
+          {filteredProducts?.map((product) => (
             <tr key={product.id}>
               <th scope="row">{product.id}</th>
               <td>

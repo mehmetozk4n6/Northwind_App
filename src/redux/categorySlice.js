@@ -14,7 +14,7 @@ export const getCategories = createAsyncThunk(
 export const categorySlice = createSlice({
   name: "category",
   initialState: {
-    currentCategory: {},
+    currentCategory: "",
     categories: [],
     status: "idle",
     error: "",
