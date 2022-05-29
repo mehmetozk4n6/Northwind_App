@@ -18,12 +18,15 @@ function AddOrUpdateProduct() {
     if (categories.length === 0) {
       dispatch(getCategories());
     }
+  }, [dispatch, categories]);
+
+  useEffect(() => {
     setProduct(
       productId && products.length > 0
         ? getProductById(products, productId)
         : ""
     );
-  }, []);
+  }, [productId, products]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -65,7 +68,6 @@ function AddOrUpdateProduct() {
 }
 
 export function getProductById(products, productId) {
-  console.log(productId);
   return products.find((product) => product.id === parseInt(productId));
 }
 

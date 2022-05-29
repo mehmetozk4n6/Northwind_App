@@ -11,7 +11,7 @@ export const cartSlice = createSlice({
         (item) => item.product.id === action.payload.product.id
       );
       if (addedItem) {
-        state.cart.map((item) => {
+        state.cart.forEach((item) => {
           if (item.product.id === action.payload.product.id) {
             item.quantity += 1;
           }
@@ -21,8 +21,8 @@ export const cartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.cart.filter(
-        (item) => item.product.id !== action.payload.product.id
+      state.cart = state.cart.filter(
+        (item) => item.product.id !== action.payload
       );
     },
   },
