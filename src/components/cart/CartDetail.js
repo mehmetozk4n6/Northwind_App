@@ -1,9 +1,11 @@
 import { Table, Button } from "reactstrap";
 import alertify from "alertifyjs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { cartSelector } from "../../redux/cartSlice";
 
-function CartDetail(props) {
+function CartDetail() {
   const dispatch = useDispatch();
+  const cart = useSelector(cartSelector);
   const removeFromCart = (product) => {
     dispatch(removeFromCart(product));
     alertify.error(product.productName + " sepetten silindi");
@@ -22,7 +24,7 @@ function CartDetail(props) {
           </tr>
         </thead>
         <tbody>
-          {props.cart.map((cartItem) => (
+          {cart.map((cartItem) => (
             <tr key={cartItem.product.id}>
               <th scope="row">{cartItem.product.id}</th>
               <td>{cartItem.product.productName}</td>

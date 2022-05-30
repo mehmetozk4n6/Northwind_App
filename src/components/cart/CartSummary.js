@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import alertify from "alertifyjs";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../../redux/cartSlice";
-import { removeFromCart } from "../../redux/cartSlice";
+import { deleteFromCart } from "../../redux/cartSlice";
 
 function CartSummary() {
   const cart = useSelector(cartSelector);
   const dispatch = useDispatch();
-  const removeFrom = (product) => {
-    dispatch(removeFromCart(product.id));
+  const deleteFrom = (product) => {
+    dispatch(deleteFromCart(product.id));
     alertify.error(product.productName + " sepetten silindi");
   };
   const renderEmpty = () => (
@@ -27,7 +27,7 @@ function CartSummary() {
             outline
             size="sm"
             className="me-2"
-            onClick={() => removeFrom(cartItem.product)}
+            onClick={() => deleteFrom(cartItem.product)}
           >
             Sil
           </Button>

@@ -18,7 +18,7 @@ function ProductList() {
 
   useEffect(() => {
     dispatch(getProducts());
-  }, []);
+  }, [dispatch]);
   const addToCart1 = (product) => {
     dispatch(addToCart({ quantity: 1, product }));
     alertify.notify(product.productName + " sepete eklendi");
