@@ -1,6 +1,7 @@
 import { Container } from "reactstrap";
 import Navi from "../navi/Navi";
-import Dashboard from "./Dashboard";
+import DashboardUser from "./DashboardUser";
+import DashboardAdmin from "./DashboardAdmin";
 import { Route, Routes } from "react-router-dom";
 import CartDetail from "../cart/CartDetail";
 import AddOrUpdateProduct from "../products/AddOrUpdateProduct";
@@ -11,8 +12,8 @@ export default function App() {
     <Container>
       <Navi />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="products" element={<Dashboard />} />
+        <Route path="/" element={<DashboardUser />} />
+        <Route path="admin" element={<DashboardAdmin />} />
         <Route path="saveproduct" element={<AddOrUpdateProduct />} />
         <Route path="saveproduct/:productId" element={<AddOrUpdateProduct />} />
         <Route path="cart" element={<CartDetail />} />

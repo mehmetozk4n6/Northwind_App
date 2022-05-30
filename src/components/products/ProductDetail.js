@@ -9,7 +9,7 @@ function ProductDetail({ categories, product, onSave, onChange, errors }) {
       <TextInput
         name="productName"
         label="Product Name"
-        value={product.productName}
+        value={product.productName || ""}
         onChange={onChange}
         error={errors.productName}
       />
@@ -28,21 +28,21 @@ function ProductDetail({ categories, product, onSave, onChange, errors }) {
       <TextInput
         name="unitPrice"
         label="unitPrice"
-        value={product.unitPrice}
+        value={product.unitPrice || ""}
         onChange={onChange}
         error={errors.unitPrice}
       />
       <TextInput
         name="quantityPerUnit"
         label="quantityPerUnit"
-        value={product.quantityPerUnit}
+        value={product.quantityPerUnit || ""}
         onChange={onChange}
         error={errors.quantityPerUnit}
       />
       <TextInput
         name="unitsInStock"
         label="unitsInStock"
-        value={product.unitsInStock}
+        value={product.unitsInStock || ""}
         onChange={onChange}
         error={errors.unitsInStock}
       />

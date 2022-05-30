@@ -1,6 +1,6 @@
 import { Col, Row } from "reactstrap";
 import CategoryList from "../categories/CategoryList";
-import ProductList from "../products/ProductList";
+import ProductListAdmin from "../products/ProductListAdmin";
 
 import React from "react";
 
@@ -13,7 +13,7 @@ export default function Dashboard() {
           <CategoryList />
         </Col>
         <Col xs="9">
-          <ProductList />
+          <ProductListAdmin />
         </Col>
       </Row>
     </div>
