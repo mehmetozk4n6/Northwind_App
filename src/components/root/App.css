@@ -1,3 +1,6 @@
 .cardtitle {
   font-size: 0.9em;
 }
+div.error {
+  color: rgb(221, 85, 85);
+}

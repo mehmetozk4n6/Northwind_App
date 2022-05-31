@@ -1,25 +1,23 @@
 import { useFormik } from "formik";
 import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
-import moment from "moment";
 
 function Login({ handleClose, show }) {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
         name: "",
-        adress: "",
-        openingTime: "",
-        closingTime: "",
+        email: "",
+        password: "",
+        passwordConfirm: "",
       },
       onSubmit: (values) => {
-        values.openingTime = Date.parse(`01 Jan 1970 ${values.openingTime}:00`);
-        values.closingTime = Date.parse(`01 Jan 1970 ${values.closingTime}:00`);
         console.log(values);
         values.name = "";
-        values.adress = "";
-        values.openingTime = moment(Date.now()).format("HH:mm");
-        values.closingTime = moment(Date.now).format("HH:mm");
+        values.email = "";
+        values.password = "";
+        values.passwordConfirm = "";
+
         handleClose();
       },
       validationSchema,
@@ -29,9 +27,9 @@ function Login({ handleClose, show }) {
       <Modal show={show} onHide={handleClose}>
         <form onSubmit={handleSubmit}>
           <Modal.Header closeButton>
-            <Modal.Title>Add New Location</Modal.Title>
+            <Modal.Title>User Login</Modal.Title>
           </Modal.Header>
-          <Modal.Body className="d-flex flex-column justify-content-center align-items-start modalAddEdit">
+          <Modal.Body className="d-flex flex-column justify-content-center align-items-center modalAddEdit">
             <input
               name="name"
               id="name"
@@ -48,51 +46,55 @@ function Login({ handleClose, show }) {
             <br />
 
             <input
-              name="adress"
-              id="adress"
-              value={values.adress}
+              name="email"
+              id="email"
+              value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Address"
+              placeholder="email"
               className="ps-2"
             />
-            {errors.adress && touched.adress && (
-              <div className="error">{errors.adress}</div>
+            {errors.email && touched.email && (
+              <div className="error">{errors.email}</div>
             )}
             <br />
             <br />
-            <label htmlFor="openingTime">Opening Time</label>
+            <label htmlFor="password">Password</label>
             <input
-              name="openingTime"
-              id="openingTime"
-              type="time"
-              value={values.openingTime}
+              name="password"
+              id="password"
+              value={values.password}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Opening Time"
+              placeholder="password"
               className="ps-2"
             />
+            {errors.password && touched.password && (
+              <div className="error">{errors.password}</div>
+            )}
 
             <br />
             <br />
-            <label htmlFor="closingTime">Closing Time</label>
+            <label htmlFor="passwordConfirm">Password Confirm</label>
             <input
-              name="closingTime"
-              id="closingTime"
-              type="time"
-              value={values.closingTime}
+              name="passwordConfirm"
+              id="passwordConfirm"
+              value={values.passwordConfirm}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Closing Time"
+              placeholder="Password Confirm"
               className="ps-2"
             />
+            {errors.passwordConfirm && touched.passwordConfirm && (
+              <div className="error">{errors.passwordConfirm}</div>
+            )}
 
             <br />
             <br />
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="danger" type="submit">
-              Save
+            <Button variant="success" type="submit">
+              Login
             </Button>
           </Modal.Footer>
         </form>

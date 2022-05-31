@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../../redux/cartSlice";
 import { deleteFromCart } from "../../redux/cartSlice";
 import Price from "./Price";
+import { BsBasket3Fill, BsBasket3 } from "react-icons/bs";
 
 function CartSummary() {
   const [shown, setShown] = useState(false);
@@ -17,17 +18,20 @@ function CartSummary() {
     alertify.error(product.productName + " sepetten silindi");
   };
   const renderEmpty = () => (
-    <Nav className="ms-auto">
-      <Nav.Item>Sepetiniz Boş</Nav.Item>
+    <Nav className="ms-auto btn btn-sm btn-secondary text-decoration-none p-2">
+      <Nav.Item>
+        <BsBasket3 size="2em" />
+      </Nav.Item>
     </Nav>
   );
   const renderSummary = () => (
     <NavDropdown
-      title="Sepet"
+      title={<BsBasket3Fill size="2em" />}
       drop="down"
       show={shown}
       onToggle={() => setShown(!shown)}
       align="end"
+      className="btn btn-sm btn-warning text-decoration-none"
     >
       {cart.map((cartItem) => (
         <NavDropdown.Item key={cartItem.product.id} href="#">
