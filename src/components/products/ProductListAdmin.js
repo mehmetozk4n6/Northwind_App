@@ -26,10 +26,19 @@ function ProductList() {
 
   return (
     <div>
-      <h3>
-        <Badge color="warning">Products</Badge>
-        <Badge color="success">{currentCategory.categoryName}</Badge>
-      </h3>
+      <div className="d-flex justify-content-between m-1">
+        <h3>
+          <Badge color="warning">Products</Badge>
+          <Badge color="success">{currentCategory.categoryName}</Badge>
+        </h3>
+        <Link
+          to="/saveproduct/"
+          className="bg-primary text-white p-2 rounded text-decoration-none"
+        >
+          Save Product
+        </Link>
+      </div>
+
       <Table hover responsive striped>
         <thead>
           <tr>
@@ -45,17 +54,18 @@ function ProductList() {
           {filteredProducts?.map((product) => (
             <tr key={product.id}>
               <th scope="row">{product.id}</th>
-              <td>
-                <Link to={"/saveproduct/" + product.id}>
-                  {product.productName}
-                </Link>
-              </td>
+              <td>{product.productName}</td>
               <td>{product.unitPrice}</td>
               <td>{product.quantityPerUnit}</td>
               <td>{product.unitsInStock}</td>
               <td>
-                <Button color="success" onClick={() => addToCart1(product)}>
-                  Ekle
+                <Button className="btn btn-outline-secondary">
+                  <Link
+                    className="text-decoration-none text-white"
+                    to={"/saveproduct/" + product.id}
+                  >
+                    Update
+                  </Link>
                 </Button>
               </td>
             </tr>

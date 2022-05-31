@@ -1,13 +1,13 @@
 import { Table, Button } from "reactstrap";
 import alertify from "alertifyjs";
 import { useDispatch, useSelector } from "react-redux";
-import { cartSelector } from "../../redux/cartSlice";
+import { cartSelector, deleteFromCart } from "../../redux/cartSlice";
 
 function CartDetail() {
   const dispatch = useDispatch();
   const cart = useSelector(cartSelector);
-  const removeFromCart = (product) => {
-    dispatch(removeFromCart(product));
+  const deleteFromCart1 = (product) => {
+    dispatch(deleteFromCart(product.id));
     alertify.error(product.productName + " sepetten silindi");
   };
   return (
@@ -30,11 +30,10 @@ function CartDetail() {
               <td>{cartItem.product.productName}</td>
               <td>{cartItem.product.unitPrice}</td>
               <td>{cartItem.quantity}</td>
-
               <td>
                 <Button
                   color="danger"
-                  onClick={() => removeFromCart(cartItem.product)}
+                  onClick={() => deleteFromCart1(cartItem.product)}
                 >
                   Sil
                 </Button>

@@ -16,10 +16,15 @@ function CategoryList() {
   const currentCategory = useSelector(currentCategorySelector);
   useEffect(() => {
     dispatch(getCategories());
-  }, []);
+  }, [dispatch]);
   const selectCategory = (category) => {
-    dispatch(changeCategory(category));
-    dispatch(getProducts(category.id));
+    if (category === "all") {
+      dispatch(changeCategory(""));
+      // dispatch(getProducts());
+    } else {
+      dispatch(changeCategory(category));
+      // dispatch(getProducts());
+    }
   };
   return (
     <div>
@@ -28,6 +33,14 @@ function CategoryList() {
         <Badge color="warning">Categories</Badge>
       </h3>
       <ListGroup>
+        <ListGroupItem
+          action
+          active={currentCategory === ""}
+          tag="button"
+          onClick={() => selectCategory("all")}
+        >
+          Products
+        </ListGroupItem>
         {categories.map((category) => (
           <ListGroupItem
             action

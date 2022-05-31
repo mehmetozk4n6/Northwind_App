@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavDropdown, Nav } from "react-bootstrap";
 import { Badge, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -5,8 +6,10 @@ import alertify from "alertifyjs";
 import { useDispatch, useSelector } from "react-redux";
 import { cartSelector } from "../../redux/cartSlice";
 import { deleteFromCart } from "../../redux/cartSlice";
+import Price from "./Price";
 
 function CartSummary() {
+  const [shown, setShown] = useState(false);
   const cart = useSelector(cartSelector);
   const dispatch = useDispatch();
   const deleteFrom = (product) => {
@@ -19,7 +22,13 @@ function CartSummary() {
     </Nav>
   );
   const renderSummary = () => (
-    <NavDropdown title="Sepet" drop="down" align="end">
+    <NavDropdown
+      title="Sepet"
+      drop="down"
+      show={shown}
+      onToggle={() => setShown(!shown)}
+      align="end"
+    >
       {cart.map((cartItem) => (
         <NavDropdown.Item key={cartItem.product.id} href="#">
           <Button
@@ -38,8 +47,15 @@ function CartSummary() {
         </NavDropdown.Item>
       ))}
       <NavDropdown.Divider />
-      <Nav.Item>
-        <Link to="cart">Sepete Git</Link>
+      <Nav.Item className="d-flex flex-row-reverse">
+        <Price />
+      </Nav.Item>
+      <Nav.Item className="d-flex justify-content-center">
+        <Button color="secondary" outline onClick={() => setShown(false)}>
+          <Link className="text-decoration-none text-dark" to="cart">
+            Sepete Git
+          </Link>
+        </Button>
       </Nav.Item>
     </NavDropdown>
   );
