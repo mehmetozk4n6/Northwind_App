@@ -7,16 +7,25 @@ import { currentCategorySelector } from "../../redux/categorySlice";
 import { addToCart, cartSelector, removeFromCart } from "../../redux/cartSlice";
 
 import PaginatedItems from "./PaginatedItems";
+import SearchBar from "./SearchBar";
+import { useState } from "react";
 
 function ProductList() {
   const dispatch = useDispatch();
   const products = useSelector(productsSelector);
   const cart = useSelector(cartSelector);
   const currentCategory = useSelector(currentCategorySelector);
-  const filteredProducts =
+  const [searchValue, setSearchValue] = useState("");
+  const filteredProducts1 =
     currentCategory === ""
       ? products
       : products.filter((product) => product.categoryId === currentCategory.id);
+  const filteredProducts =
+    searchValue === ""
+      ? filteredProducts1
+      : filteredProducts1?.filter((item) =>
+          item.productName.includes(searchValue)
+        );
 
   useEffect(() => {
     dispatch(getProducts());
@@ -44,7 +53,7 @@ function ProductList() {
         <Badge color="warning">Products</Badge>
         <Badge color="success">{currentCategory.categoryName}</Badge>
       </h3>
-
+      <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="d-flex flex-wrap">
         <PaginatedItems
           filteredProducts={filteredProducts}

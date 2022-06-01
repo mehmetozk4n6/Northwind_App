@@ -68,6 +68,7 @@ function Login({ handleClose, show }) {
             <br />
             <label htmlFor="password">Password</label>
             <input
+              type="password"
               name="password"
               id="password"
               value={values.password}
@@ -83,6 +84,7 @@ function Login({ handleClose, show }) {
             <br />
             <label htmlFor="passwordConfirm">Password Confirm</label>
             <input
+              type="password"
               name="passwordConfirm"
               id="passwordConfirm"
               value={values.passwordConfirm}

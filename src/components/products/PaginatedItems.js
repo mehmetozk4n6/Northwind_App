@@ -85,7 +85,6 @@ function PaginatedItems({
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(filteredProducts?.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(filteredProducts?.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, filteredProducts]);
@@ -94,9 +93,6 @@ function PaginatedItems({
   const handlePageClick = (event) => {
     const newOffset =
       (event.selected * itemsPerPage) % filteredProducts?.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
     dispatch(setItemOffset(newOffset));
   };
 

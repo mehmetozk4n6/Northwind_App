@@ -8,7 +8,6 @@ import {
   currentCategorySelector,
   setItemOffset,
 } from "../../redux/categorySlice";
-
 import { getCategories } from "../../redux/categorySlice";
 
 function CategoryList() {
