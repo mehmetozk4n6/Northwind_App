@@ -1,6 +1,27 @@
 .cardtitle {
   font-size: 0.9em;
 }
+
 div.error {
   color: rgb(221, 85, 85);
+}
+
+.pagination {
+  margin-right: 12%;
+  margin-left: auto;
+}
+.pagination li {
+  color: grey;
+  margin-right: 8px;
+}
+.pagination li:hover {
+  color: rgb(192, 10, 10);
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: grey;
+}
+.pagination li a:hover {
+  color: rgb(192, 10, 10);
 }

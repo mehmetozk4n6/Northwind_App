@@ -6,8 +6,9 @@ import {
   categoriesSelector,
   changeCategory,
   currentCategorySelector,
+  setItemOffset,
 } from "../../redux/categorySlice";
-import { getProducts } from "../../redux/productSlice";
+
 import { getCategories } from "../../redux/categorySlice";
 
 function CategoryList() {
@@ -25,6 +26,7 @@ function CategoryList() {
       dispatch(changeCategory(category));
       // dispatch(getProducts());
     }
+    dispatch(setItemOffset(0));
   };
   return (
     <div>
@@ -32,7 +34,7 @@ function CategoryList() {
         {" "}
         <Badge color="warning">Categories</Badge>
       </h3>
-      <ListGroup>
+      <ListGroup className="text-center">
         <ListGroupItem
           action
           active={currentCategory === ""}
@@ -48,6 +50,7 @@ function CategoryList() {
             tag="button"
             onClick={() => selectCategory(category)}
             key={category.id}
+            className="w-75 mx-auto"
           >
             {category.categoryName}
           </ListGroupItem>

@@ -2,8 +2,6 @@ import { Col, Row } from "reactstrap";
 import CategoryList from "../categories/CategoryList";
 import ProductListUser from "../products/ProductListUser";
 
-import React from "react";
-
 export default function Dashboard() {
   return (
     <div>
