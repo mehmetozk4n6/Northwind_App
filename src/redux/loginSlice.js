@@ -1,56 +1,42 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-// export const loginSlice = createSlice({
-//   name: "login",
-//   initialState: {
-//     cart: [],
-//     totalPrice: 0,
-//   },
-//   reducers: {
-//     addToCart: (state, action) => {
-//       let addedItem = state.cart.find(
-//         (item) => item.product.id === action.payload.product.id
-//       );
-//       if (addedItem) {
-//         state.cart.forEach((item) => {
-//           if (item.product.id === action.payload.product.id) {
-//             item.quantity += 1;
-//           }
-//         });
-//       } else {
-//         state.cart = [...state.cart, action.payload];
-//       }
-//       state.totalPrice += parseInt(action.payload.product.unitPrice);
-//     },
-//     removeFromCart: (state, action) => {
-//       let addedItem = state.cart.find(
-//         (item) => item.product.id === action.payload.product.id
-//       );
-//       if (addedItem) {
-//         state.cart.forEach((item) => {
-//           if (item.product.id === action.payload.product.id) {
-//             item.quantity -= 1;
-//           }
-//         });
-//       }
-//       state.totalPrice -= parseInt(action.payload.product.unitPrice);
-//       state.cart = state.cart?.filter((item) => item.quantity !== 0);
-//     },
-//     deleteFromCart: (state, action) => {
-//       let addedItem = state.cart.find(
-//         (item) => item.product.id === action.payload
-//       );
-//       state.totalPrice -= addedItem.quantity * addedItem.product.unitPrice;
+export const loginSlice = createSlice({
+  name: "login",
+  initialState: {
+    users: [
+      {
+        name: "admin",
+        email: "admin@gmail.com",
+        password: "12345",
+        passwordConfirm: "12345",
+        adminRole: true,
+      },
+    ],
+    error: "",
+    isUser: false,
+    isAdmin: false,
+  },
+  reducers: {
+    register: (state, action) => {
+      state.users = [...state.users, action.payload];
+    },
+    loginUser: (state, action) => {
+      state.isUser = state.users.some(
+        (person) =>
+          person.name === action.payload.name &&
+          person.password === action.payload.password
+      );
+      state.isAdmin = state.users.some((person) => person?.adminRole);
+    },
+  },
+});
 
-//       state.cart = state.cart.filter(
-//         (item) => item.product.id !== action.payload
-//       );
-//     },
-//   },
-// });
+export const { register, loginUser } = loginSlice.actions;
 
-// export const { addToCart, removeFromCart, deleteFromCart } = cartSlice.actions;
-// export const cartSelector = (state) => state.cart.cart;
-// export const totalPriceSelector = (state) => state.cart.totalPrice;
+export const usersSelector = (state) => state.login.users;
+export const adminsSelector = (state) => state.login.admins;
+export const isUserSelector = (state) => state.login.isUser;
+export const isAdminSelector = (state) => state.login.isAdmin;
+export const errorSelector = (state) => state.login.error;
 
-// export default loginSlice.reducer;
+export default loginSlice.reducer;

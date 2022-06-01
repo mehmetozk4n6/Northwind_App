@@ -1,35 +1,27 @@
-import { useEffect } from "react";
 import { useFormik } from "formik";
-import validationSchema from "./validations1";
+import validationSchema from "./validations";
 import { Modal, Button } from "react-bootstrap";
-import { AiOutlineLogin } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { isAdminSelector, loginUser } from "../../redux/loginSlice";
-import { useNavigate } from "react-router-dom";
+import { FaUserAlt } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/loginSlice";
 
-function Login({ handleClose, show }) {
-  const isAdmin = useSelector(isAdminSelector);
+function Register({ handleClose, show }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAdmin) {
-      navigate("admin");
-    }
-  }, [isAdmin, navigate]);
-
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
         name: "",
+        email: "",
         password: "",
+        passwordConfirm: "",
       },
       onSubmit: (values) => {
-        console.log("123");
+        dispatch(register(values));
         console.log(values);
-        dispatch(loginUser(values));
         values.name = "";
+        values.email = "";
         values.password = "";
+        values.passwordConfirm = "";
         handleClose();
       },
       validationSchema,
@@ -41,8 +33,8 @@ function Login({ handleClose, show }) {
           <Modal.Header closeButton>
             <Modal.Title>
               <>
-                <AiOutlineLogin size="1.5em" />
-                <span> User Login</span>
+                <FaUserAlt size="1.5em" />
+                <span> User Register</span>
               </>
             </Modal.Title>
           </Modal.Header>
@@ -62,6 +54,21 @@ function Login({ handleClose, show }) {
             )}
 
             <br />
+            <label htmlFor="email">Email</label>
+            <input
+              name="email"
+              id="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="email"
+              className="ps-2"
+            />
+            {errors.email && touched.email && (
+              <div className="error">{errors.email}</div>
+            )}
+
+            <br />
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -78,10 +85,26 @@ function Login({ handleClose, show }) {
             )}
 
             <br />
+            <label htmlFor="passwordConfirm">Password Confirm</label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              value={values.passwordConfirm}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Password Confirm"
+              className="ps-2"
+            />
+            {errors.passwordConfirm && touched.passwordConfirm && (
+              <div className="error">{errors.passwordConfirm}</div>
+            )}
+
+            <br />
           </Modal.Body>
           <Modal.Footer>
             <Button variant="success" type="submit">
-              Login
+              Register
             </Button>
           </Modal.Footer>
         </form>
@@ -90,4 +113,4 @@ function Login({ handleClose, show }) {
   );
 }
 
-export default Login;
+export default Register;

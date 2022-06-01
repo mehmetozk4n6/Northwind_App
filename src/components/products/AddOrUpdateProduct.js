@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { categoriesSelector, getCategories } from "../../redux/categorySlice";
+import { isAdminSelector } from "../../redux/loginSlice";
 import { productsSelector, saveProduct } from "../../redux/productSlice";
 import ProductDetail from "./ProductDetail";
 
 function AddOrUpdateProduct() {
+  const isAdmin = useSelector(isAdminSelector);
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let { productId } = useParams();
@@ -13,6 +15,10 @@ function AddOrUpdateProduct() {
   const categories = useSelector(categoriesSelector);
   const [product, setProduct] = useState("");
   const [errors, setErrors] = useState({});
+
+  if (!isAdmin) {
+    navigate("/");
+  }
 
   useEffect(() => {
     if (categories.length === 0) {

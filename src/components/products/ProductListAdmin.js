@@ -1,28 +1,38 @@
 import { useEffect } from "react";
 import { Badge, Table, Button } from "reactstrap";
-import alertify from "alertifyjs";
+// import alertify from "alertifyjs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productsSelector, getProducts } from "../../redux/productSlice";
 import { currentCategorySelector } from "../../redux/categorySlice";
-import { addToCart } from "../../redux/cartSlice";
+// import { addToCart } from "../../redux/cartSlice";
+import { isAdminSelector } from "../../redux/loginSlice";
+import { useNavigate } from "react-router-dom";
 
 function ProductList() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const products = useSelector(productsSelector);
   const currentCategory = useSelector(currentCategorySelector);
   const filteredProducts =
     currentCategory === ""
       ? products
       : products.filter((product) => product.categoryId === currentCategory.id);
+  const isAdmin = useSelector(isAdminSelector);
+
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/");
+    }
+  }, [navigate, isAdmin]);
 
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-  const addToCart1 = (product) => {
-    dispatch(addToCart({ quantity: 1, product }));
-    alertify.notify(product.productName + " sepete eklendi");
-  };
+  // const addToCart1 = (product) => {
+  //   dispatch(addToCart({ quantity: 1, product }));
+  //   alertify.notify(product.productName + " sepete eklendi");
+  // };
 
   return (
     <div>
