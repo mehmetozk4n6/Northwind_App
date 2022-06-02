@@ -29,10 +29,6 @@ function CategoryList() {
   };
   return (
     <div>
-      <h3>
-        {" "}
-        <Badge color="warning">Categories</Badge>
-      </h3>
       <ListGroup className="text-center">
         <ListGroupItem
           action

@@ -18,13 +18,21 @@ export const loginSlice = createSlice({
   },
   reducers: {
     register: (state, action) => {
-      state.users = [...state.users, action.payload];
+      state.users = [
+        ...state.users,
+        {
+          name: action.payload.namer,
+          email: action.payload.emailr,
+          password: action.payload.passwordConfirm,
+          passwordConfirm: action.payload.passwordConfirmr,
+        },
+      ];
     },
     loginUser: (state, action) => {
       state.isUser = state.users.some(
         (person) =>
-          person.name === action.payload.name &&
-          person.password === action.payload.password
+          person.name === action.payload.namel &&
+          person.password === action.payload.passwordl
       );
       state.isAdmin = state.users.some((person) => person?.adminRole);
     },

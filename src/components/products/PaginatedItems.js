@@ -11,7 +11,11 @@ import {
   Button,
 } from "reactstrap";
 import boxes from "../../assets/boxes.jpeg";
-import { itemOffsetSelector, setItemOffset } from "../../redux/categorySlice";
+import {
+  itemOffsetSelector,
+  setItemOffset,
+  shownCategoriesSelector,
+} from "../../redux/categorySlice";
 
 // Example items, to simulate fetching from another resource
 
@@ -22,23 +26,26 @@ function Items({
   removeFromCart1,
   addToCart1,
   itemOffset,
+  show,
 }) {
   return (
     <>
-      {itemOffset === 0 && searchValue === "" && <Carousel className="w-50" />}
-      {currentItems &&
-        currentItems.map((product) => (
-          <div
-            key={product.id}
-            className="m-3 d-flex flex-column flex-wrap card justify-content-center align-items-center"
-          >
-            <Card className="w-100">
+      {itemOffset === 0 && searchValue === "" && !show && (
+        <Carousel className="w-50" />
+      )}
+      <div className="d-flex flex-wrap justify-content-around">
+        {currentItems &&
+          currentItems.map((product) => (
+            <Card
+              key={product.id}
+              className="m-3 d-flex flex-column flex-wrap card justify-content-between align-items-center"
+            >
               <CardImg
                 top
                 width="100%"
                 src={boxes}
                 alt="Card image cap"
-                className="p-1"
+                className="p-1 "
               />
               <CardBody className="d-flex flex-column align-items-center justify-content-center">
                 <CardTitle className="h-50 text-center cardtitle">
@@ -49,7 +56,7 @@ function Items({
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
                 </CardText> */}
-                <div className="d-flex flex-wrap justify-content-between">
+                <div className="d-flex justify-content-center align-items-end">
                   <Button
                     size="sm"
                     variant="outline-danger"
@@ -70,8 +77,8 @@ function Items({
                 </div>
               </CardBody>
             </Card>
-          </div>
-        ))}
+          ))}
+      </div>
     </>
   );
 }
@@ -90,6 +97,7 @@ function PaginatedItems({
   // following the API or data you're working with.
   const itemOffset = useSelector(itemOffsetSelector);
   const dispatch = useDispatch();
+  const show = useSelector(shownCategoriesSelector);
   let itemsPerPage = 9;
 
   useEffect(() => {
@@ -116,6 +124,7 @@ function PaginatedItems({
           addToCart1={addToCart1}
           itemOffset={itemOffset}
           searchValue={searchValue}
+          show={show}
         />
       </div>
 

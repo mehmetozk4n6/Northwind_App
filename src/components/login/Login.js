@@ -1,38 +1,26 @@
-import { useEffect } from "react";
 import { useFormik } from "formik";
-import validationSchema from "./validations1";
+import validationSchemal from "./validationsl";
 import { Modal, Button } from "react-bootstrap";
 import { AiOutlineLogin } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
-import { isAdminSelector, loginUser } from "../../redux/loginSlice";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/loginSlice";
 
 function Login({ handleClose, show }) {
-  const isAdmin = useSelector(isAdminSelector);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAdmin) {
-      navigate("admin");
-    }
-  }, [isAdmin, navigate]);
 
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        name: "",
-        password: "",
+        namel: "",
+        passwordl: "",
       },
       onSubmit: (values) => {
-        console.log("123");
-        console.log(values);
         dispatch(loginUser(values));
-        values.name = "";
-        values.password = "";
+        values.namel = "";
+        values.passwordl = "";
         handleClose();
       },
-      validationSchema,
+      validationSchemal,
     });
   return (
     <div>
@@ -47,34 +35,34 @@ function Login({ handleClose, show }) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex flex-column justify-content-center align-items-center modalAddEdit">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="namel">Name</label>
             <input
-              name="name"
-              id="name"
-              value={values.name}
+              name="namel"
+              id="namel"
+              value={values.namel}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Name"
               className="ps-2"
             />
-            {errors.name && touched.name && (
-              <div className="error">{errors.name}</div>
+            {errors.namel && touched.namel && (
+              <div className="error">{errors.namel}</div>
             )}
 
             <br />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="passwordl">Password</label>
             <input
               type="password"
-              name="password"
-              id="password"
-              value={values.password}
+              name="passwordl"
+              id="passwordl"
+              value={values.passwordl}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="password"
               className="ps-2"
             />
-            {errors.password && touched.password && (
-              <div className="error">{errors.password}</div>
+            {errors.passwordl && touched.passwordl && (
+              <div className="error">{errors.passwordl}</div>
             )}
 
             <br />

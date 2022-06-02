@@ -16,9 +16,11 @@ function AddOrUpdateProduct() {
   const [product, setProduct] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (!isAdmin) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (!isAdmin) {
+      navigate("/");
+    }
+  }, [isAdmin, navigate]);
 
   useEffect(() => {
     if (categories.length === 0) {

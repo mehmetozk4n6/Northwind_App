@@ -8,12 +8,14 @@ import AddOrUpdateProduct from "../products/AddOrUpdateProduct";
 import NotFound from "../common/NotFound";
 import Navi from "../navi/Navi";
 import Footer from "../footer/Footer";
+import Header from "../header/Header";
 
 export default function App() {
   return (
     <div className="">
       <Container>
         <Navi />
+        <Header />
         <Routes>
           <Route path="/" element={<DashboardUser />} />
           <Route path="admin" element={<DashboardAdmin />} />

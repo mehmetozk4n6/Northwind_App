@@ -1,44 +1,57 @@
 import { Container, Navbar, Nav } from "react-bootstrap";
 import { useState } from "react";
 import CartSummary from "../cart/CartSummary";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Login from "../login/Login";
 import { Button } from "reactstrap";
 import { AiOutlineHome } from "react-icons/ai";
 import Register from "../login/Register";
-import { useDispatch } from "react-redux";
-import { showCategories } from "../../redux/categorySlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeCategory,
+  setItemOffset,
+  showCategories,
+  shownCategoriesSelector,
+} from "../../redux/categorySlice";
+import { isAdminSelector } from "../../redux/loginSlice";
 
 function Navi() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [showr, setShowr] = useState(false);
   const handleCloser = () => setShowr(false);
   const handleShowr = () => setShowr(true);
+  const isAdmin = useSelector(isAdminSelector);
+
+  const handleClick = () => {
+    dispatch(setItemOffset(0));
+    dispatch(showCategories(false));
+    dispatch(changeCategory(""));
+  };
 
   return (
     <div>
       <Navbar bg="warning" expand="lg" className="mb-2">
         <Container>
           <Navbar.Brand>
-            <Link to="/">
+            <Link to="/" onClick={handleClick}>
               <AiOutlineHome size="2.5em" color="brown" />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Item className="me-3">
-                <Button
-                  variant="danger"
-                  onClick={() => dispatch(showCategories())}
-                >
-                  Categories
-                </Button>
-                <Login handleClose={handleClose} show={show} />
-              </Nav.Item>
+              {isAdmin && (
+                <Nav.Item className="me-3">
+                  <Button variant="danger" onClick={() => navigate("admin")}>
+                    Admin
+                  </Button>
+                  <Login handleClose={handleClose} show={show} />
+                </Nav.Item>
+              )}
               <Nav.Item className="me-3">
                 <Button variant="danger" onClick={handleShow}>
                   Login

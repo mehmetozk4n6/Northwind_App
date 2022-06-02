@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import validationSchema from "./validations";
+import validationSchemar from "./validationsr";
 import { Modal, Button } from "react-bootstrap";
 import { FaUserAlt } from "react-icons/fa";
 import { useDispatch } from "react-redux";
@@ -10,21 +10,21 @@ function Register({ handleClose, show }) {
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     useFormik({
       initialValues: {
-        name: "",
-        email: "",
-        password: "",
-        passwordConfirm: "",
+        namer: "",
+        emailr: "",
+        passwordr: "",
+        passwordConfirmr: "",
       },
       onSubmit: (values) => {
         dispatch(register(values));
         console.log(values);
-        values.name = "";
-        values.email = "";
-        values.password = "";
-        values.passwordConfirm = "";
+        values.namer = "";
+        values.emailr = "";
+        values.passwordr = "";
+        values.passwordConfirmr = "";
         handleClose();
       },
-      validationSchema,
+      validationSchemar,
     });
   return (
     <div>
@@ -39,65 +39,65 @@ function Register({ handleClose, show }) {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="d-flex flex-column justify-content-center align-items-center modalAddEdit">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="namer">Name</label>
             <input
-              name="name"
-              id="name"
-              value={values.name}
+              name="namer"
+              id="namer"
+              value={values.namer}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Name"
               className="ps-2"
             />
-            {errors.name && touched.name && (
-              <div className="error">{errors.name}</div>
+            {errors.namer && touched.namer && (
+              <div className="error">{errors.namer}</div>
             )}
 
             <br />
-            <label htmlFor="email">Email</label>
+            <label htmlFor="emailr">Email</label>
             <input
-              name="email"
-              id="email"
-              value={values.email}
+              name="emailr"
+              id="emailr"
+              value={values.emailr}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="email"
               className="ps-2"
             />
-            {errors.email && touched.email && (
-              <div className="error">{errors.email}</div>
+            {errors.emailr && touched.emailr && (
+              <div className="error">{errors.emailr}</div>
             )}
 
             <br />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="passwordr">Password</label>
             <input
-              type="password"
-              name="password"
-              id="password"
-              value={values.password}
+              type="passwordr"
+              name="passwordr"
+              id="passwordr"
+              value={values.passwordr}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="password"
               className="ps-2"
             />
-            {errors.password && touched.password && (
-              <div className="error">{errors.password}</div>
+            {errors.passwordr && touched.passwordr && (
+              <div className="error">{errors.passwordr}</div>
             )}
 
             <br />
-            <label htmlFor="passwordConfirm">Password Confirm</label>
+            <label htmlFor="passwordConfirmr">Password Confirm</label>
             <input
               type="password"
-              name="passwordConfirm"
-              id="passwordConfirm"
-              value={values.passwordConfirm}
+              name="passwordConfirmr"
+              id="passwordConfirmr"
+              value={values.passwordConfirmr}
               onChange={handleChange}
               onBlur={handleBlur}
               placeholder="Password Confirm"
               className="ps-2"
             />
-            {errors.passwordConfirm && touched.passwordConfirm && (
-              <div className="error">{errors.passwordConfirm}</div>
+            {errors.passwordConfirmr && touched.passwordConfirmr && (
+              <div className="error">{errors.passwordConfirmr}</div>
             )}
 
             <br />

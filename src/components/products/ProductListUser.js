@@ -49,10 +49,6 @@ function ProductList() {
 
   return (
     <div>
-      <h3>
-        <Badge color="warning">Products</Badge>
-        <Badge color="success">{currentCategory.categoryName}</Badge>
-      </h3>
       <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="d-flex flex-wrap mx-auto">
         <PaginatedItems
