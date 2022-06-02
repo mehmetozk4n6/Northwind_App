@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import Login from "../login/Login";
 import { Button } from "reactstrap";
 import { AiOutlineHome } from "react-icons/ai";
-
 import Register from "../login/Register";
+import { useDispatch } from "react-redux";
+import { showCategories } from "../../redux/categorySlice";
 
 function Navi() {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,6 +30,15 @@ function Navi() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+              <Nav.Item className="me-3">
+                <Button
+                  variant="danger"
+                  onClick={() => dispatch(showCategories())}
+                >
+                  Categories
+                </Button>
+                <Login handleClose={handleClose} show={show} />
+              </Nav.Item>
               <Nav.Item className="me-3">
                 <Button variant="danger" onClick={handleShow}>
                   Login

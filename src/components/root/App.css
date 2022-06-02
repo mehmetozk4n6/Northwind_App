@@ -1,5 +1,17 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.App {
+  min-height: 100vh;
+}
+.card {
+  width: 20%;
+}
 .cardtitle {
   font-size: 0.9em;
+}
+
+.carousel {
+  width: 80%;
 }
 
 div.error {
@@ -24,4 +36,21 @@ div.error {
 }
 .pagination li a:hover {
   color: rgb(192, 10, 10);
+}
+
+.footer {
+  margin-top: auto;
+  margin-bottom: 0em;
+  background-color: #131a22;
+  color: #fff;
+}
+.footer ul {
+  height: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.footer li {
+  list-style-type: none;
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
+import Carousel from "../toolbox/Carousel";
 import {
   Card,
   CardImg,
@@ -12,16 +13,24 @@ import {
 import boxes from "../../assets/boxes.jpeg";
 import { itemOffsetSelector, setItemOffset } from "../../redux/categorySlice";
 
-// Example items, to simulate fetching from another resourc
+// Example items, to simulate fetching from another resource
 
-function Items({ currentItems, findItem, removeFromCart1, addToCart1 }) {
+function Items({
+  searchValue,
+  currentItems,
+  findItem,
+  removeFromCart1,
+  addToCart1,
+  itemOffset,
+}) {
   return (
     <>
+      {itemOffset === 0 && searchValue === "" && <Carousel className="w-50" />}
       {currentItems &&
         currentItems.map((product) => (
           <div
             key={product.id}
-            className="m-3 d-flex flex-column flex-wrap w-25 justify-content-center align-items-center"
+            className="m-3 d-flex flex-column flex-wrap card justify-content-center align-items-center"
           >
             <Card className="w-100">
               <CardImg
@@ -68,6 +77,7 @@ function Items({ currentItems, findItem, removeFromCart1, addToCart1 }) {
 }
 
 function PaginatedItems({
+  searchValue,
   filteredProducts,
   findItem,
   removeFromCart1,
@@ -104,6 +114,8 @@ function PaginatedItems({
           findItem={findItem}
           removeFromCart1={removeFromCart1}
           addToCart1={addToCart1}
+          itemOffset={itemOffset}
+          searchValue={searchValue}
         />
       </div>
 

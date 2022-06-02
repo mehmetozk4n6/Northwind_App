@@ -54,12 +54,13 @@ function ProductList() {
         <Badge color="success">{currentCategory.categoryName}</Badge>
       </h3>
       <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap mx-auto">
         <PaginatedItems
           filteredProducts={filteredProducts}
           findItem={findItem}
           removeFromCart1={removeFromCart1}
           addToCart1={addToCart1}
+          searchValue={searchValue}
         />
       </div>
     </div>
