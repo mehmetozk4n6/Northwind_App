@@ -18,7 +18,7 @@ function CartSummary() {
     alertify.error(product.productName + " sepetten silindi");
   };
   const renderEmpty = () => (
-    <Nav className="ms-auto btn btn-sm btn-secondary text-decoration-none p-2">
+    <Nav className="ms-auto btn btn-sm btn-warning text-decoration-none p-2 rounded-circle">
       <Nav.Item>
         <BsBasket3 size="2em" />
       </Nav.Item>
@@ -31,7 +31,7 @@ function CartSummary() {
       show={shown}
       onToggle={() => setShown(!shown)}
       align="end"
-      className="btn btn-sm btn-warning text-decoration-none"
+      className="btn btn-sm btn-warning text-decoration-none p-0 rounded-pill"
     >
       {cart.map((cartItem) => (
         <NavDropdown.Item key={cartItem.product.id} href="#">

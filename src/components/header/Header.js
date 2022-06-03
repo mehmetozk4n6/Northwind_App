@@ -14,11 +14,11 @@ function Header() {
   return (
     <div className="d-flex">
       <h3
-        className="btn"
+        className="btn mt-3"
         onClick={() => dispatch(showCategories(!shownCategories))}
       >
         {" "}
-        <Badge color="warning" className="p-2">
+        <Badge color="warning" className="p-2 rotate">
           Categories
         </Badge>
       </h3>

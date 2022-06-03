@@ -31,10 +31,14 @@ export const productSlice = createSlice({
     savedProduct: [],
     status: "idle",
     error: "",
+    searchValue: "",
   },
   reducers: {
     saveProduct: (state, action) => {
       state.savedProduct = [...state.savedProduct, action.payload];
+    },
+    setSearchValue: (state, action) => {
+      state.searchValue = action.payload;
     },
   },
   extraReducers: {
@@ -55,7 +59,8 @@ export const productSlice = createSlice({
 export const productsSelector = (state) => state.product.products;
 export const statusSelector = (state) => state.product.status;
 export const errorSelector = (state) => state.product.error;
+export const searchValueSelector = (state) => state.product.searchValue;
 
 export default productSlice.reducer;
 
-export const { saveProduct } = productSlice.actions;
+export const { saveProduct, setSearchValue } = productSlice.actions;

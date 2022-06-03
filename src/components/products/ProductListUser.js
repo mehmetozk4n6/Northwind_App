@@ -2,7 +2,11 @@ import { useEffect } from "react";
 import { Badge } from "reactstrap";
 import alertify from "alertifyjs";
 import { useDispatch, useSelector } from "react-redux";
-import { productsSelector, getProducts } from "../../redux/productSlice";
+import {
+  productsSelector,
+  getProducts,
+  searchValueSelector,
+} from "../../redux/productSlice";
 import { currentCategorySelector } from "../../redux/categorySlice";
 import { addToCart, cartSelector, removeFromCart } from "../../redux/cartSlice";
 
@@ -15,7 +19,8 @@ function ProductList() {
   const products = useSelector(productsSelector);
   const cart = useSelector(cartSelector);
   const currentCategory = useSelector(currentCategorySelector);
-  const [searchValue, setSearchValue] = useState("");
+  const searchValue = useSelector(searchValueSelector);
+
   const filteredProducts1 =
     currentCategory === ""
       ? products
@@ -49,7 +54,6 @@ function ProductList() {
 
   return (
     <div>
-      <SearchBar searchValue={searchValue} setSearchValue={setSearchValue} />
       <div className="d-flex flex-wrap mx-auto">
         <PaginatedItems
           filteredProducts={filteredProducts}

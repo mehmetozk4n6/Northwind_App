@@ -1,12 +1,14 @@
 import { InputGroup, FormControl } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setItemOffset } from "../../redux/categorySlice";
+import { searchValueSelector, setSearchValue } from "../../redux/productSlice";
 
-function SearchBar({ searchValue, setSearchValue }) {
+function SearchBar() {
   const dispatch = useDispatch();
+  const searchValue = useSelector(searchValueSelector);
 
   const handleChange = (val) => {
-    setSearchValue(val);
+    dispatch(setSearchValue(val));
     dispatch(setItemOffset(0));
   };
   return (

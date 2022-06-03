@@ -4,16 +4,17 @@ import CartSummary from "../cart/CartSummary";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "../login/Login";
 import { Button } from "reactstrap";
-import { AiOutlineHome } from "react-icons/ai";
+import { IoHome } from "react-icons/io5";
 import Register from "../login/Register";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategory,
   setItemOffset,
   showCategories,
-  shownCategoriesSelector,
 } from "../../redux/categorySlice";
 import { isAdminSelector } from "../../redux/loginSlice";
+import SearchBar from "../products/SearchBar";
+import { setSearchValue } from "../../redux/productSlice";
 
 function Navi() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function Navi() {
   const isAdmin = useSelector(isAdminSelector);
 
   const handleClick = () => {
+    dispatch(setSearchValue(""));
     dispatch(setItemOffset(0));
     dispatch(showCategories(false));
     dispatch(changeCategory(""));
@@ -34,13 +36,14 @@ function Navi() {
 
   return (
     <div>
-      <Navbar bg="warning" expand="lg" className="mb-2">
+      <Navbar expand="lg" className="mb-2 navbar">
         <Container>
-          <Navbar.Brand>
+          <Navbar.Brand className="me-5">
             <Link to="/" onClick={handleClick}>
-              <AiOutlineHome size="2.5em" color="brown" />
+              <IoHome size="2.5em" color="#ffbb33" />
             </Link>
           </Navbar.Brand>
+          <SearchBar className="w-25" />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
@@ -53,13 +56,13 @@ function Navi() {
                 </Nav.Item>
               )}
               <Nav.Item className="me-3">
-                <Button variant="danger" onClick={handleShow}>
+                <Button color="success" onClick={handleShow}>
                   Login
                 </Button>
                 <Login handleClose={handleClose} show={show} />
               </Nav.Item>
               <Nav.Item className="me-3">
-                <Button variant="danger" onClick={handleShowr}>
+                <Button color="warning" onClick={handleShowr}>
                   Register
                 </Button>
                 <Register handleClose={handleCloser} show={showr} />

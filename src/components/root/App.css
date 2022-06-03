@@ -1,7 +1,18 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+.register {
+  background-color: #e76f51;
+}
+
 .App {
   min-height: 100vh;
+}
+.navbar {
+  /* background-image: linear-gradient(45deg, rgb(107, 161, 233), rgb(45, 45, 16)); */
+  background-color: #085e7d;
+}
+.rotate {
+  transform: rotate(-45deg);
 }
 
 .card {
@@ -40,7 +51,6 @@ div.error {
 }
 
 .footer {
-  margin-top: auto;
   margin-bottom: 0em;
   background-color: #131a22;
   color: #fff;
@@ -54,4 +64,7 @@ div.error {
 }
 .footer li {
   list-style-type: none;
+}
+.nonfooter {
+  margin-bottom: 6em;
 }

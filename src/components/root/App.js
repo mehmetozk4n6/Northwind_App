@@ -12,9 +12,9 @@ import Header from "../header/Header";
 
 export default function App() {
   return (
-    <div className="">
+    <div className="nonfooter">
+      <Navi />
       <Container>
-        <Navi />
         <Header />
         <Routes>
           <Route path="/" element={<DashboardUser />} />
@@ -30,7 +30,7 @@ export default function App() {
         </Routes>
       </Container>
       <div className="clearfix"></div>
-      <div className="mt-auto">
+      <div className="">
         <Footer />
       </div>
     </div>
