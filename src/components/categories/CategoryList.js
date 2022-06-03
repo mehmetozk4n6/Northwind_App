@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ListGroup, ListGroupItem, Badge } from "reactstrap";
+import { ListGroup, ListGroupItem } from "reactstrap";
 
 import {
   categoriesSelector,

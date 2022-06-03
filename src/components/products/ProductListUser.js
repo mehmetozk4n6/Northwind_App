@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Badge } from "reactstrap";
 import alertify from "alertifyjs";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,8 +10,6 @@ import { currentCategorySelector } from "../../redux/categorySlice";
 import { addToCart, cartSelector, removeFromCart } from "../../redux/cartSlice";
 
 import PaginatedItems from "./PaginatedItems";
-import SearchBar from "./SearchBar";
-import { useState } from "react";
 
 function ProductList() {
   const dispatch = useDispatch();
