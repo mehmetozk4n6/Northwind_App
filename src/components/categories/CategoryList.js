@@ -7,6 +7,7 @@ import {
   changeCategory,
   currentCategorySelector,
   setItemOffset,
+  shownCategoriesSelector,
 } from "../../redux/categorySlice";
 import { getCategories } from "../../redux/categorySlice";
 
@@ -14,6 +15,7 @@ function CategoryList() {
   const dispatch = useDispatch();
   const categories = useSelector(categoriesSelector);
   const currentCategory = useSelector(currentCategorySelector);
+  const showCategories = useSelector(shownCategoriesSelector);
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
@@ -27,14 +29,18 @@ function CategoryList() {
     }
     dispatch(setItemOffset(0));
   };
+
+  if (!showCategories) return;
+
   return (
     <div>
-      <ListGroup className="text-center">
+      <ListGroup className="text-center d-flex flex-row  my-1 ">
         <ListGroupItem
           action
           active={currentCategory === ""}
           tag="button"
           onClick={() => selectCategory("all")}
+          className="category"
         >
           Products
         </ListGroupItem>
@@ -45,7 +51,7 @@ function CategoryList() {
             tag="button"
             onClick={() => selectCategory(category)}
             key={category.id}
-            className="w-75 mx-auto"
+            className=" category"
           >
             {category.categoryName}
           </ListGroupItem>

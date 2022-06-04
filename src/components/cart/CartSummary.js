@@ -18,7 +18,7 @@ function CartSummary() {
     alertify.error(product.productName + " sepetten silindi");
   };
   const renderEmpty = () => (
-    <Nav className="ms-auto btn btn-sm btn-warning text-decoration-none p-2 rounded-circle">
+    <Nav className="ms-auto btn btn-sm btn-warning text-decoration-none p-2 rounded-pill">
       <Nav.Item>
         <BsBasket3 size="2em" />
       </Nav.Item>

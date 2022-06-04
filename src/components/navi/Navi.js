@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, Badge } from "react-bootstrap";
 import { useState } from "react";
 import CartSummary from "../cart/CartSummary";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,8 +9,10 @@ import Register from "../login/Register";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategory,
+  currentCategorySelector,
   setItemOffset,
   showCategories,
+  shownCategoriesSelector,
 } from "../../redux/categorySlice";
 import { isAdminSelector } from "../../redux/loginSlice";
 import SearchBar from "../products/SearchBar";
@@ -26,6 +28,8 @@ function Navi() {
   const handleCloser = () => setShowr(false);
   const handleShowr = () => setShowr(true);
   const isAdmin = useSelector(isAdminSelector);
+  const currentCategory = useSelector(currentCategorySelector);
+  const shownCategories = useSelector(shownCategoriesSelector);
 
   const handleClick = () => {
     dispatch(setSearchValue(""));
@@ -36,14 +40,20 @@ function Navi() {
 
   return (
     <div>
-      <Navbar expand="lg" className="mb-2 navbar">
+      <Navbar expand="md" className=" navbar fixed-top">
         <Container>
           <Navbar.Brand className="me-5">
             <Link to="/" onClick={handleClick}>
-              <IoHome size="2.5em" color="#ffbb33" />
+              <IoHome size="2em" color="#ffbb33" />
             </Link>
           </Navbar.Brand>
-          <SearchBar className="w-25" />
+          <p
+            className="btn btn-outline-warning mt-3"
+            onClick={() => dispatch(showCategories(!shownCategories))}
+          >
+            Categories {shownCategories ? "↑" : "↓"}
+          </p>
+          <SearchBar />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">

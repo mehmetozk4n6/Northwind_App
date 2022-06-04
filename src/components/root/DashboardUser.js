@@ -7,26 +7,5 @@ import ProductListUser from "../products/ProductListUser";
 export default function Dashboard() {
   const shownCategories = useSelector(shownCategoriesSelector);
 
-  return (
-    <div>
-      <Row>
-        {shownCategories ? (
-          <>
-            <Col xs="3">
-              <CategoryList />
-            </Col>
-            <Col xs="9">
-              <ProductListUser />
-            </Col>
-          </>
-        ) : (
-          <>
-            <Col xs="12">
-              <ProductListUser />
-            </Col>
-          </>
-        )}
-      </Row>
-    </div>
-  );
+  return <ProductListUser />;
 }

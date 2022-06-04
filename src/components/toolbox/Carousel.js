@@ -18,7 +18,7 @@ const images = [
 
 function Carousel() {
   return (
-    <div className="carousel mx-auto mt-3">
+    <div className="carousel mx-auto p-1 mt-1 border rounded">
       <ImageGallery
         items={images}
         loading="lazy"

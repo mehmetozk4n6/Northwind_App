@@ -38,7 +38,7 @@ function Items({
           currentItems.map((product) => (
             <Card
               key={product.id}
-              className="m-3 d-flex flex-column flex-wrap card justify-content-between align-items-center"
+              className="m-3 d-flex flex-column flex-wrap card justify-content-between align-items-center shadow"
             >
               <CardImg
                 top

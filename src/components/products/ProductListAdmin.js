@@ -36,19 +36,6 @@ function ProductList() {
 
   return (
     <div>
-      <div className="d-flex justify-content-between m-1">
-        <h3>
-          <Badge color="warning">Products</Badge>
-          <Badge color="success">{currentCategory.categoryName}</Badge>
-        </h3>
-        <Link
-          to="/saveproduct/"
-          className="bg-primary text-white p-2 rounded text-decoration-none"
-        >
-          Save Product
-        </Link>
-      </div>
-
       <Table hover responsive striped>
         <thead>
           <tr>
@@ -57,7 +44,14 @@ function ProductList() {
             <th>Unit Price</th>
             <th>Quantity Per Unit</th>
             <th>Unit in Stock</th>
-            <th></th>
+            <th>
+              <Link
+                to="/saveproduct/"
+                className="bg-primary text-white p-1 py-2 rounded text-decoration-none "
+              >
+                Add New
+              </Link>
+            </th>
           </tr>
         </thead>
         <tbody>

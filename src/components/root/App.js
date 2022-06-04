@@ -9,12 +9,14 @@ import NotFound from "../common/NotFound";
 import Navi from "../navi/Navi";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
+import CategoryList from "../categories/CategoryList";
 
 export default function App() {
   return (
     <div className="nonfooter">
       <Navi />
-      <Container>
+      <Container className="containe">
+        <CategoryList />
         <Header />
         <Routes>
           <Route path="/" element={<DashboardUser />} />
@@ -29,10 +31,7 @@ export default function App() {
           <Route path="saveproduct/*" element={<NotFound />} />
         </Routes>
       </Container>
-      <div className="clearfix"></div>
-      <div className="">
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 }
