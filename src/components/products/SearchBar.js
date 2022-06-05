@@ -14,7 +14,6 @@ function SearchBar() {
     e.preventDefault();
     dispatch(setSearchValue(searchword));
     dispatch(setItemOffset(0));
-    setSearchword("");
   };
   return (
     <InputGroup className="mx-3 w-25 ms-5 me-3  mx-auto ">
@@ -24,9 +23,9 @@ function SearchBar() {
           placeholder="Search"
           value={searchword}
           onChange={(e) => setSearchword(e.target.value)}
-          className="rounded-0 rounded-right"
+          className="rounded-left"
         />
-        <InputGroup.Text id="basic-addon1" className="p-0 px-2 rounded-right">
+        <InputGroup.Text id="basic-addon1" className="p-0 px-2">
           <button className="p-0 m-0 border-0">
             <AiOutlineSearch />
           </button>
