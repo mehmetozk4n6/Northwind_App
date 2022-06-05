@@ -36,10 +36,14 @@ export const loginSlice = createSlice({
       );
       state.isAdmin = state.users.some((person) => person?.adminRole);
     },
+    logoutUser: (state, action) => {
+      state.isUser = false;
+      state.isAdmin = false;
+    },
   },
 });
 
-export const { register, loginUser } = loginSlice.actions;
+export const { register, loginUser, logoutUser } = loginSlice.actions;
 
 export const usersSelector = (state) => state.login.users;
 export const adminsSelector = (state) => state.login.admins;

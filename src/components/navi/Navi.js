@@ -14,7 +14,11 @@ import {
   showCategories,
   shownCategoriesSelector,
 } from "../../redux/categorySlice";
-import { isAdminSelector } from "../../redux/loginSlice";
+import {
+  isAdminSelector,
+  isUserSelector,
+  logoutUser,
+} from "../../redux/loginSlice";
 import SearchBar from "../products/SearchBar";
 import { setSearchValue } from "../../redux/productSlice";
 
@@ -28,6 +32,7 @@ function Navi() {
   const handleCloser = () => setShowr(false);
   const handleShowr = () => setShowr(true);
   const isAdmin = useSelector(isAdminSelector);
+  const isUser = useSelector(isUserSelector);
   const currentCategory = useSelector(currentCategorySelector);
   const shownCategories = useSelector(shownCategoriesSelector);
 
@@ -36,6 +41,10 @@ function Navi() {
     dispatch(setItemOffset(0));
     dispatch(showCategories(false));
     dispatch(changeCategory(""));
+  };
+
+  const handleLogOut = () => {
+    dispatch(logoutUser());
   };
 
   return (
@@ -65,18 +74,28 @@ function Navi() {
                   <Login handleClose={handleClose} show={show} />
                 </Nav.Item>
               )}
-              <Nav.Item className="me-3">
-                <Button color="success" onClick={handleShow}>
-                  Login
-                </Button>
-                <Login handleClose={handleClose} show={show} />
-              </Nav.Item>
-              <Nav.Item className="me-3">
-                <Button color="warning" onClick={handleShowr}>
-                  Register
-                </Button>
-                <Register handleClose={handleCloser} show={showr} />
-              </Nav.Item>
+              {isUser ? (
+                <Nav.Item className="me-3">
+                  <Button color="success" onClick={() => handleLogOut()}>
+                    Logout
+                  </Button>
+                </Nav.Item>
+              ) : (
+                <>
+                  <Nav.Item className="me-3">
+                    <Button color="success" onClick={handleShow}>
+                      Login
+                    </Button>
+                    <Login handleClose={handleClose} show={show} />
+                  </Nav.Item>
+                  <Nav.Item className="me-3">
+                    <Button color="warning" onClick={handleShowr}>
+                      Register
+                    </Button>
+                    <Register handleClose={handleCloser} show={showr} />
+                  </Nav.Item>
+                </>
+              )}
             </Nav>
             <CartSummary />
           </Navbar.Collapse>
