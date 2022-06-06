@@ -23,6 +23,7 @@ export const categorySlice = createSlice({
   },
   reducers: {
     changeCategory: (state, action) => {
+      console.log(action.payload);
       state.currentCategory = action.payload;
     },
     setItemOffset: (state, action) => {

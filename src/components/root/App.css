@@ -34,7 +34,7 @@
 
 .containe {
   margin-top: 4.5em;
-  min-height: calc(100vh - 107px);
+  min-height: calc(100vh - 110px);
 }
 .categorylist {
   display: flex;

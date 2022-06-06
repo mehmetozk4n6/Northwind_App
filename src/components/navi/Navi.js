@@ -18,6 +18,7 @@ import SearchBar from "../products/SearchBar";
 import { setSearchValue } from "../../redux/productSlice";
 import Logout from "../login/Logout";
 import UserSummary from "../login/UserSummary";
+import CategoryListDropDown from "../categories/CategoryListDropDown";
 
 function Navi() {
   const dispatch = useDispatch();
@@ -48,12 +49,14 @@ function Navi() {
               <IoHome size="2em" color="#ffbb33" />
             </Link>
           </Navbar.Brand>
-          <p
+          {/* <h5
             className="btn btn-outline-warning mt-3"
             onClick={() => dispatch(showCategories(!shownCategories))}
           >
             Categories {shownCategories ? "↑" : "↓"}
-          </p>
+          </h5> */}
+          <CategoryListDropDown />
+
           <SearchBar />
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">

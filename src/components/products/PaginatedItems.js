@@ -58,8 +58,9 @@ function Items({
                 </CardText> */}
                 <div className="d-flex justify-content-center align-items-end">
                   <Button
+                    color="danger"
+                    outline
                     size="sm"
-                    variant="outline-danger"
                     onClick={() => removeFromCart1(product, 1)}
                   >
                     -
@@ -68,8 +69,9 @@ function Items({
                     {findItem(product) ? findItem(product).quantity : 0}
                   </div>
                   <Button
+                    color="success"
+                    outline
                     size="sm"
-                    variant="outline-success"
                     onClick={() => addToCart1(product, 1)}
                   >
                     +
@@ -98,7 +100,7 @@ function PaginatedItems({
   const itemOffset = useSelector(itemOffsetSelector);
   const dispatch = useDispatch();
   const show = useSelector(shownCategoriesSelector);
-  let itemsPerPage = 9;
+  let itemsPerPage = 8;
 
   useEffect(() => {
     // Fetch items from another resources.

@@ -8,7 +8,6 @@ import AddOrUpdateProduct from "../products/AddOrUpdateProduct";
 import NotFound from "../common/NotFound";
 import Navi from "../navi/Navi";
 import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import CategoryList from "../categories/CategoryList";
 
 export default function App() {
@@ -16,8 +15,7 @@ export default function App() {
     <div>
       <Navi />
       <Container className="containe">
-        <CategoryList />
-        <Header />
+        {/* <CategoryList /> */}
         <Routes>
           <Route path="/" element={<DashboardUser />} />
           <Route path="admin" element={<DashboardAdmin />} />

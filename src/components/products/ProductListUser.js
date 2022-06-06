@@ -42,7 +42,7 @@ function ProductList() {
     let num = findItem(product) ? findItem(product).quantity : 0;
     if (num > 0) {
       dispatch(removeFromCart({ quantity: quantity, product }));
-      alertify.warning(product.productName + "1 adet sepetten cıkarıldı.");
+      alertify.error(product.productName + "1 adet sepetten cıkarıldı.");
     }
   };
 
