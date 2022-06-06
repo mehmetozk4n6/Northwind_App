@@ -18,18 +18,18 @@ function SearchBar() {
   return (
     <InputGroup className="mx-3 w-25 ms-5 me-3  mx-auto ">
       <form onSubmit={handleSubmit} className="d-flex">
-        <FormControl
-          aria-label="First name"
-          placeholder="Search"
-          value={searchword}
-          onChange={(e) => setSearchword(e.target.value)}
-          className="rounded-left"
-        />
-        <InputGroup.Text id="basic-addon1" className="p-0 px-2">
-          <button className="p-0 m-0 border-0">
+        <div className="d-flex p-1 search">
+          <button className="p-0 m-0 ">
             <AiOutlineSearch />
           </button>
-        </InputGroup.Text>
+          <FormControl
+            aria-label="First name"
+            placeholder="Search"
+            value={searchword}
+            onChange={(e) => setSearchword(e.target.value)}
+            className="searchbar"
+          />
+        </div>
       </form>
     </InputGroup>
   );

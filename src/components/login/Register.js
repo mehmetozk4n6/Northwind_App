@@ -17,7 +17,6 @@ function Register({ handleClose, show }) {
       },
       onSubmit: (values) => {
         dispatch(register(values));
-        console.log(values);
         values.namer = "";
         values.emailr = "";
         values.passwordr = "";

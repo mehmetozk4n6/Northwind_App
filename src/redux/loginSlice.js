@@ -15,6 +15,7 @@ export const loginSlice = createSlice({
     error: "",
     isUser: false,
     isAdmin: false,
+    userName: "",
   },
   reducers: {
     register: (state, action) => {
@@ -23,18 +24,24 @@ export const loginSlice = createSlice({
         {
           name: action.payload.namer,
           email: action.payload.emailr,
-          password: action.payload.passwordConfirm,
+          password: action.payload.passwordr,
           passwordConfirm: action.payload.passwordConfirmr,
         },
       ];
     },
     loginUser: (state, action) => {
-      state.isUser = state.users.some(
-        (person) =>
+      state.users.forEach((person) => {
+        console.log(person.name);
+        console.log(person.password);
+        if (
           person.name === action.payload.namel &&
           person.password === action.payload.passwordl
-      );
-      state.isAdmin = state.users.some((person) => person?.adminRole);
+        ) {
+          state.isUser = true;
+          state.userName = person.name;
+          state.isAdmin = person.hasOwnProperty("adminRole");
+        }
+      });
     },
     logoutUser: (state, action) => {
       state.isUser = false;
@@ -50,5 +57,6 @@ export const adminsSelector = (state) => state.login.admins;
 export const isUserSelector = (state) => state.login.isUser;
 export const isAdminSelector = (state) => state.login.isAdmin;
 export const errorSelector = (state) => state.login.error;
+export const userNameSelector = (state) => state.login.userName;
 
 export default loginSlice.reducer;

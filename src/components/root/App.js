@@ -13,7 +13,7 @@ import CategoryList from "../categories/CategoryList";
 
 export default function App() {
   return (
-    <div className="nonfooter">
+    <div>
       <Navi />
       <Container className="containe">
         <CategoryList />

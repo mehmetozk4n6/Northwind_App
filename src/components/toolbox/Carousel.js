@@ -5,14 +5,20 @@ const images = [
   {
     original: discount,
     thumbnail: discount,
+    originalWidth: "1000",
+    originalHeight: "500",
   },
   {
     original: discount,
     thumbnail: discount,
+    originalWidth: "1000",
+    originalHeight: "500",
   },
   {
     original: discount,
     thumbnail: discount,
+    originalWidth: "1000",
+    originalHeight: "500",
   },
 ];
 

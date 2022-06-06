@@ -1,4 +1,4 @@
-import { Container, Navbar, Nav, Badge } from "react-bootstrap";
+import { Container, Navbar, Nav } from "react-bootstrap";
 import { useState } from "react";
 import CartSummary from "../cart/CartSummary";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,18 +9,15 @@ import Register from "../login/Register";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategory,
-  currentCategorySelector,
   setItemOffset,
   showCategories,
   shownCategoriesSelector,
 } from "../../redux/categorySlice";
-import {
-  isAdminSelector,
-  isUserSelector,
-  logoutUser,
-} from "../../redux/loginSlice";
+import { isAdminSelector, isUserSelector } from "../../redux/loginSlice";
 import SearchBar from "../products/SearchBar";
 import { setSearchValue } from "../../redux/productSlice";
+import Logout from "../login/Logout";
+import UserSummary from "../login/UserSummary";
 
 function Navi() {
   const dispatch = useDispatch();
@@ -33,7 +30,6 @@ function Navi() {
   const handleShowr = () => setShowr(true);
   const isAdmin = useSelector(isAdminSelector);
   const isUser = useSelector(isUserSelector);
-  const currentCategory = useSelector(currentCategorySelector);
   const shownCategories = useSelector(shownCategoriesSelector);
 
   const handleClick = () => {
@@ -41,10 +37,6 @@ function Navi() {
     dispatch(setItemOffset(0));
     dispatch(showCategories(false));
     dispatch(changeCategory(""));
-  };
-
-  const handleLogOut = () => {
-    dispatch(logoutUser());
   };
 
   return (
@@ -75,11 +67,9 @@ function Navi() {
                 </Nav.Item>
               )}
               {isUser ? (
-                <Nav.Item className="me-3">
-                  <Button color="success" onClick={() => handleLogOut()}>
-                    Logout
-                  </Button>
-                </Nav.Item>
+                <>
+                  <UserSummary />
+                </>
               ) : (
                 <>
                   <Nav.Item className="me-3">
