@@ -1,16 +1,14 @@
 import { useState } from "react";
 import { NavDropdown } from "react-bootstrap";
-import { Badge } from "reactstrap";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ListGroup, ListGroupItem } from "reactstrap";
 
 import {
   categoriesSelector,
   changeCategory,
   currentCategorySelector,
   setItemOffset,
-  showCategories,
+  showCarousel,
 } from "../../redux/categorySlice";
 import { getCategories } from "../../redux/categorySlice";
 
@@ -28,10 +26,10 @@ function CategoryListDropDown() {
   const selectCategory = (category) => {
     if (category === "all") {
       dispatch(changeCategory(""));
-      dispatch(showCategories(false));
+      dispatch(showCarousel(false));
     } else {
       dispatch(changeCategory(category));
-      dispatch(showCategories(true));
+      dispatch(showCarousel(true));
     }
     dispatch(setItemOffset(0));
   };
@@ -46,9 +44,13 @@ function CategoryListDropDown() {
         show={shown}
         onToggle={() => setShown(!shown)}
         align="end"
-        className="btn btn-sm btn-warning text-decoration-none p-0 rounded-pill"
+        className="btn btn-sm btn-light text-decoration-none p-0 rounded-pill categorydropdown"
       >
-        <NavDropdown.Item href="#" onClick={() => selectCategory("all")}>
+        <NavDropdown.Item
+          className="text-center"
+          href="#"
+          onClick={() => selectCategory("all")}
+        >
           All
         </NavDropdown.Item>
         {categories?.map((category, index) => (
@@ -56,6 +58,7 @@ function CategoryListDropDown() {
             href="#"
             key={index}
             onClick={() => selectCategory(category)}
+            className="text-center"
           >
             {category.categoryName}
           </NavDropdown.Item>

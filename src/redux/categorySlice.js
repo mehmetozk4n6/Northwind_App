@@ -19,7 +19,7 @@ export const categorySlice = createSlice({
     status: "idle",
     error: "",
     itemOffset: 0,
-    shownCategories: false,
+    shownCarousel: false,
   },
   reducers: {
     changeCategory: (state, action) => {
@@ -29,8 +29,8 @@ export const categorySlice = createSlice({
     setItemOffset: (state, action) => {
       state.itemOffset = action.payload;
     },
-    showCategories: (state, action) => {
-      state.shownCategories = action.payload;
+    showCarousel: (state, action) => {
+      state.shownCarousel = action.payload;
     },
   },
   extraReducers: {
@@ -54,10 +54,9 @@ export const currentCategorySelector = (state) =>
 export const statusSelector = (state) => state.category.status;
 export const errorSelector = (state) => state.category.error;
 export const itemOffsetSelector = (state) => state.category.itemOffset;
-export const shownCategoriesSelector = (state) =>
-  state.category.shownCategories;
+export const shownCarouselSelector = (state) => state.category.shownCarousel;
 
-export const { changeCategory, setItemOffset, showCategories } =
+export const { changeCategory, setItemOffset, showCarousel } =
   categorySlice.actions;
 
 export default categorySlice.reducer;

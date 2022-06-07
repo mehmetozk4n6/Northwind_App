@@ -11,6 +11,12 @@ export const loginSlice = createSlice({
         passwordConfirm: "12345",
         adminRole: true,
       },
+      {
+        name: "user",
+        email: "user@gmail.com",
+        password: "12345",
+        passwordConfirm: "12345",
+      },
     ],
     error: "",
     isUser: false,

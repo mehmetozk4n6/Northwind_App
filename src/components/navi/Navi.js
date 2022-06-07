@@ -10,13 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategory,
   setItemOffset,
-  showCategories,
-  shownCategoriesSelector,
+  showCarousel,
 } from "../../redux/categorySlice";
 import { isAdminSelector, isUserSelector } from "../../redux/loginSlice";
 import SearchBar from "../products/SearchBar";
 import { setSearchValue } from "../../redux/productSlice";
-import Logout from "../login/Logout";
 import UserSummary from "../login/UserSummary";
 import CategoryListDropDown from "../categories/CategoryListDropDown";
 
@@ -31,12 +29,11 @@ function Navi() {
   const handleShowr = () => setShowr(true);
   const isAdmin = useSelector(isAdminSelector);
   const isUser = useSelector(isUserSelector);
-  const shownCategories = useSelector(shownCategoriesSelector);
 
   const handleClick = () => {
     dispatch(setSearchValue(""));
     dispatch(setItemOffset(0));
-    dispatch(showCategories(false));
+    dispatch(showCarousel(false));
     dispatch(changeCategory(""));
   };
 

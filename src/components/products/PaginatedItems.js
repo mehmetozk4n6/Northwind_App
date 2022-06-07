@@ -14,7 +14,7 @@ import boxes from "../../assets/boxes.jpeg";
 import {
   itemOffsetSelector,
   setItemOffset,
-  shownCategoriesSelector,
+  shownCarouselSelector,
 } from "../../redux/categorySlice";
 
 // Example items, to simulate fetching from another resource
@@ -99,7 +99,7 @@ function PaginatedItems({
   // following the API or data you're working with.
   const itemOffset = useSelector(itemOffsetSelector);
   const dispatch = useDispatch();
-  const show = useSelector(shownCategoriesSelector);
+  const show = useSelector(shownCarouselSelector);
   let itemsPerPage = 8;
 
   useEffect(() => {
