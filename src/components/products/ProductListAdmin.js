@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Badge, Table, Button } from "reactstrap";
+import { Table, Button } from "reactstrap";
 // import alertify from "alertifyjs";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
