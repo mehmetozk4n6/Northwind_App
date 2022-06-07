@@ -23,7 +23,7 @@ function Register({ handleClose, show }) {
         values.passwordConfirmr = "";
         handleClose();
       },
-      validationSchemar,
+      validationSchema: validationSchemar,
     });
   return (
     <div>
@@ -70,7 +70,7 @@ function Register({ handleClose, show }) {
             <br />
             <label htmlFor="passwordr">Password</label>
             <input
-              type="passwordr"
+              type="password"
               name="passwordr"
               id="passwordr"
               value={values.passwordr}

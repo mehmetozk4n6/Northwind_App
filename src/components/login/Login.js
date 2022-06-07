@@ -20,7 +20,7 @@ function Login({ handleClose, show }) {
         values.passwordl = "";
         handleClose();
       },
-      validationSchemal,
+      validationSchema: validationSchemal,
     });
   return (
     <div>
