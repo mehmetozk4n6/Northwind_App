@@ -8,8 +8,12 @@ function Logout() {
   const dispatch = useDispatch();
 
   return (
-    <Nav.Item className="me-3">
-      <Button color="success" onClick={() => dispatch(logoutUser())}>
+    <Nav.Item>
+      <Button
+        color="success"
+        onClick={() => dispatch(logoutUser())}
+        className="mx-auto"
+      >
         Logout
       </Button>
     </Nav.Item>

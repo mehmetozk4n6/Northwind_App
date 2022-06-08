@@ -26,10 +26,7 @@ function UserSummary() {
         </NavDropdown.Item>
 
         <NavDropdown.Divider />
-        <Logout
-          onClick={() => setShown(false)}
-          className="d-flex justify-content-center"
-        />
+        <Logout onClick={() => setShown(false)} />
       </NavDropdown>
     </>
   );

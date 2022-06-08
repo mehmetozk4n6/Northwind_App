@@ -133,11 +133,11 @@ function PaginatedItems({
       <ReactPaginate
         className="pagination"
         breakLabel="..."
-        nextLabel=">"
+        nextLabel="Next>"
         onPageChange={handlePageClick}
         pageRangeDisplayed={10}
         pageCount={pageCount}
-        previousLabel="<"
+        previousLabel="<Prev"
         renderOnZeroPageCount={null}
         marginPagesDisplayed={6}
       />
