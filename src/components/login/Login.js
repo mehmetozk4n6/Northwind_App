@@ -4,6 +4,7 @@ import { Modal, Button } from "react-bootstrap";
 import { AiOutlineLogin } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/loginSlice";
+import alertify from "alertifyjs";
 
 function Login({ handleClose, show }) {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ function Login({ handleClose, show }) {
       },
       onSubmit: (values) => {
         dispatch(loginUser(values));
+        alertify.notify("Kullanıcı girişi yapıldı.");
         values.namel = "";
         values.passwordl = "";
         handleClose();
